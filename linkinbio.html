@@ -154,18 +154,19 @@
    Replace the placeholder names and URLs with your own.
    ================================================================ */
 const PROFILE = {
-  name: "Your Name",
-  handle: "@yourhandle",
+  name: "Jahsai & Faith",
+  handle: "",         // optional, e.g. "@yourhandle"
   bio: "Everyday finds, home faves and the products I actually use. Tap a tag to shop.",
   photo: "",          // optional: paste an image URL; leave empty to show your initials
 };
 
 const LINKS = [
   { label: "Shop My Amazon Picks", sub: "Tap to shop on Amazon", url: "https://a.co/d/0agUD5aT", icon: "bag", featured: true, stamp: "Shop" },
-  { label: "TikTok", sub: "Daily finds and try-ons", url: "https://www.tiktok.com/@yourhandle", icon: "tiktok" },
-  { label: "Instagram", sub: "Reels, stories and outfit details", url: "https://www.instagram.com/yourhandle", icon: "instagram" },
-  { label: "YouTube", sub: "Hauls and full reviews", url: "https://www.youtube.com/@yourhandle", icon: "youtube" },
-  { label: "Brand Collabs", sub: "Partnerships and PR inquiries", url: "https://www.instagram.com/yourhandle", icon: "mail" },
+  // Links with an empty url are hidden until you fill them in.
+  { label: "Jahsai on Instagram", sub: "@ (add handle)", url: "", icon: "instagram" },
+  { label: "Jahsai on TikTok", sub: "@ (add handle)", url: "", icon: "tiktok" },
+  { label: "Faith on Instagram", sub: "@cyb3rgrlfrnd", url: "https://www.instagram.com/cyb3rgrlfrnd/", icon: "instagram" },
+  { label: "Faith on TikTok", sub: "@digitalxPrincess", url: "https://www.tiktok.com/@digitalxPrincess", icon: "tiktok" },
 ];
 
 const DISCLOSURE = "As an Amazon Influencer, I earn from qualifying purchases. Some links may be affiliate links.";
@@ -183,6 +184,7 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 
 document.getElementById("name").textContent = PROFILE.name;
 document.getElementById("handle").textContent = PROFILE.handle;
+document.getElementById("handle").hidden = !PROFILE.handle;
 document.getElementById("bio").textContent = PROFILE.bio;
 document.getElementById("disclosure").textContent = DISCLOSURE;
 
@@ -190,7 +192,7 @@ const av = document.getElementById("avatar");
 if (PROFILE.photo) av.innerHTML = `<img src="${esc(PROFILE.photo)}" alt="${esc(PROFILE.name)}">`;
 else av.textContent = PROFILE.name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
 
-document.getElementById("links").innerHTML = LINKS.map((l) => `
+document.getElementById("links").innerHTML = LINKS.filter((l) => l.url).map((l) => `
   <li><a class="tag${l.featured ? " featured" : ""}" href="${esc(l.url)}" target="_blank" rel="noopener">
     ${l.stamp ? `<span class="stamp">${esc(l.stamp)}</span>` : ""}
     <span class="ico">${svg(l.icon)}</span>
@@ -198,8 +200,7 @@ document.getElementById("links").innerHTML = LINKS.map((l) => `
     <span class="arrow" aria-hidden="true">&rarr;</span>
   </a></li>`).join("");
 
-document.getElementById("socials").innerHTML = LINKS.filter((l) => ["tiktok", "instagram", "youtube"].includes(l.icon))
-  .map((l) => `<a href="${esc(l.url)}" target="_blank" rel="noopener" aria-label="${esc(l.label)}">${svg(l.icon)}</a>`).join("");
+document.getElementById("socials").hidden = true;
 
 const shareBtn = document.getElementById("share");
 shareBtn.addEventListener("click", () => {
