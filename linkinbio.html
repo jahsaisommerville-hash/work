@@ -1,4 +1,4 @@
-<title>My Link Hub</title>
+<title>Jahsai & Faith</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,14 +49,14 @@
   /* Profile */
   .profile { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
   .avatar {
-    width: 104px; height: 104px; border-radius: 50%;
+    width: 150px; height: 150px; border-radius: 50%;
     display: grid; place-items: center;
     background: var(--accent); color: var(--accent-ink);
     font-family: var(--font-display); font-weight: 800; font-size: 40px;
     box-shadow: 0 0 0 4px var(--bg), 0 0 0 6px var(--accent);
     overflow: hidden;
   }
-  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
   h1 {
     font-family: var(--font-display); font-weight: 800;
     font-size: clamp(28px, 7vw, 36px); line-height: 1.1; margin: 6px 0 0;
@@ -157,7 +157,7 @@ const PROFILE = {
   name: "Jahsai & Faith",
   handle: "",         // optional, e.g. "@yourhandle"
   bio: "Everyday finds, home faves and the products I actually use. Tap a tag to shop.",
-  photo: "",          // optional: paste an image URL; leave empty to show your initials
+  photo: "profile.jpg", // leave empty to show your initials instead
 };
 
 const LINKS = [
